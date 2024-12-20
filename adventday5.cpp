@@ -21,10 +21,6 @@ bool isValidUpdate(const vector<int>& update, const map<int, set<int>>& preceden
 
 int main() {
     ifstream fin("day5input.txt");
-    if (!fin.is_open()) {
-        cerr << "Error: Could not open input file!" << endl;
-        return 1;
-    }
 
     map<int, set<int>> precedence;
     string line;
@@ -36,7 +32,7 @@ int main() {
         precedence[a].insert(b);
     }
 
-    int sumOfMiddles = 0;
+    int ans = 0;
     while (getline(fin, line)) {
         vector<int> update;
         stringstream ss(line);
@@ -47,12 +43,12 @@ int main() {
         }
 
         if (isValidUpdate(update, precedence)) {
-            sumOfMiddles += update[update.size() / 2];
+            ans += update[update.size() / 2];
         }
     }
 
     fin.close();
 
-    cout << "ANSWER: " << sumOfMiddles << endl;
+    cout << "ANSWER: " << ans << endl;
     return 0;
 }
